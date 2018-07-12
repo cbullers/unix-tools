@@ -1,0 +1,45 @@
+#!/bin/bash
+
+echo "Start tapping on any key and i'll find the beat"
+echo "or press Q to quit"
+echo ""
+
+started=false
+start_time=0
+times_pressed=0
+bpm=0
+
+epoch_ms()
+{
+	echo $(($(date +%s%N)/1000000))
+}
+
+update_beat() {
+	clear
+	elapsedms=$(( $(epoch_ms)-$start_time ))
+	elapsedsec=$( bc -l <<< "$elapsedms/1000" )
+	minpercent=$( bc -l <<< "60/$elapsedsec" )
+	bpm=$( bc <<< "scale=2;($times_pressed * $minpercent)/1" )
+	printf "Beats Per Minute: "
+	echo $bpm
+}
+
+while true; do
+	read -n 1 -s key
+	if [[ $key = q ]]; then
+		# pressed q
+		clear
+		printf "cool, you got an average of $bpm bpm\n"
+		break
+	else
+		# pressed any other key
+		if [[ $started = false ]]; then
+			started=true
+			start_time=$(epoch_ms)
+		fi
+
+		times_pressed=$(($times_pressed+1))
+		update_beat
+
+	fi
+done
