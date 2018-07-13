@@ -7,3 +7,4 @@ Ever expanding cool UNIX tools, mainly for learning to work with BASH better
 | sudothat| Looks at your last command in ```history``` and prefixes it with sudo and executes (probably better as an alias..) |
 | beat    | Tool to find the BPM of tapping on your keys, i dunno |
 | toggletouchpad | Enables/disables the use of the touchpad, used becuase palm keeps hitting the mouse when typing |
+| pastetofile| uses ```xsel``` to paste contents to a file (arg 1: (a)ppend or over(w)rite, arg2: file loc) |
