@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# arg 1: over(w)rite or (a)ppend
+# requires: xsel
+
+if [[ $1 -eq "w" ]]; then
+	xsel -b > $2
+elif [[ $1 -eq "a" ]]; then #incase they type something else?
+	xsel -b >> $2
+fi
+
