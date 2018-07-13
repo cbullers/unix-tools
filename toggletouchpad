@@ -1,6 +1,7 @@
+#!/bin/bash
 cur=$(synclient | grep TouchpadOff | awk '{print $3}')
 
-if [[ cur=0 ]]; then
+if [[ $cur -eq 0 ]]; then
 	synclient TouchpadOff=1
 else
 	synclient TouchpadOff=0
